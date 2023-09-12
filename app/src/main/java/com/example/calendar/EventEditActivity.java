@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.time.LocalTime;
 
@@ -37,8 +38,13 @@ public class EventEditActivity extends AppCompatActivity
     public void saveEventAction(View view)
     {
         String eventName = eventNameET.getText().toString();
-        Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
-        Event.eventsList.add(newEvent);
-        finish();
+        if (eventName.matches("")){
+            Toast.makeText(this, "You did not enter any memo", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
+            Event.eventsList.add(newEvent);
+            finish();
+        }
     }
 }
