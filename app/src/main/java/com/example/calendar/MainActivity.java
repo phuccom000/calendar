@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Activity _this = this;
-        ((TextView) findViewById(R.id.createEventButton)).setOnClickListener(new View.OnClickListener() {
+        ((FloatingActionButton) findViewById(R.id.createEventButton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(_this, EventEditActivity.class));
