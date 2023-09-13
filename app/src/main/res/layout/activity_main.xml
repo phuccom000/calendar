@@ -8,137 +8,58 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Weekly"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
-        android:background="@drawable/blue_box"
-        android:textStyle="bold"
-        android:onClick="weeklyAction"
-        android:textSize="20sp"/>
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0sp"
+        android:layout_weight=".05"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp">
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/arrowleft"
-            android:scaleType="fitCenter"
-            android:padding="10dp"
-            android:onClick="previousMonthAction" />
+        android:layout_gravity="center">
 
         <TextView
-            android:id="@+id/monthYearTV"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:text="Feb 2021"
-            android:padding="10dp"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:textColor="@color/black"/>
-
-        <ImageButton
-            android:layout_width="0dp"
+            android:id="@+id/monthViewButton"
+            android:layout_width="0sp"
+            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/arrowright"
-            android:scaleType="fitCenter"
-            android:padding="10dp"
-            android:onClick="nextMonthAction" />
+            android:text="Month"
+            android:gravity="center"/>
 
+        <TextView
+            android:id="@+id/weekViewButton"
+            android:layout_width="0sp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:text="Week"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/dayViewButton"
+            android:layout_width="0sp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:text="Day"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/createEventButton"
+            android:layout_width="0sp"
+            android:layout_weight=".1"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:gravity="center"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SUN"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="MON"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TUE"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="WED"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="THU"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="FRI"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SAT"
-            android:textColor="@color/gray"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-
-    </LinearLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_app"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="0sp"
+        android:layout_weight=".95"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph"/>
 </LinearLayout>
 
 
