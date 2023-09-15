@@ -2,6 +2,8 @@ package com.example.calendar;
 
 import static com.example.calendar.CalendarUtils.selectedDate;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,6 +27,8 @@ public class DayView extends Fragment {
     private TextView monthDayText;
     private TextView dayOfWeekTV;
     private ListView hourListView;
+
+    private EventManager manager;
 
     public DayView() {
         // Required empty public constructor
@@ -60,6 +64,10 @@ public class DayView extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void restartFrag () {
+        manager = new EventManager(getActivity().getSharedPreferences("APP_INFO", Context.MODE_PRIVATE), "Events");
 
         initButtons();
         initWidgets();
@@ -91,7 +99,8 @@ public class DayView extends Fragment {
 
     private void setHourAdapter()
     {
-        HourAdapter hourAdapter = new HourAdapter(getActivity().getApplicationContext(), hourEventList());
+        Activity activity = getActivity();
+        HourAdapter hourAdapter = new HourAdapter(activity.getApplicationContext(), activity, hourEventList());
         hourListView.setAdapter(hourAdapter);
     }
 
@@ -99,12 +108,12 @@ public class DayView extends Fragment {
     {
         ArrayList<HourEvent> list = new ArrayList<>();
 
-        for(int hour = 0; hour < 24; hour++)
-        {
-            LocalTime time = LocalTime.of(hour, 0);
-            ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
-            HourEvent hourEvent = new HourEvent(time, events);
-            list.add(hourEvent);
+        for (int hour = 0; hour < 24; ++hour) list.add(new HourEvent(hour, new ArrayList<>()));
+
+        ArrayList<Event> events = manager.getEvents(selectedDate);
+
+        for (Event event : events) {
+            if (event != null) list.get(event.getDateTime().getHour()).getEvents().add(event);
         }
 
         return list;
@@ -120,5 +129,11 @@ public class DayView extends Fragment {
     {
         selectedDate = selectedDate.plusDays(1);
         setDayView();
+    }
+
+    @Override
+    public void onStart () {
+        super.onStart();
+        restartFrag();
     }
 }

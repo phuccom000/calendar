@@ -1,15 +1,41 @@
 package com.example.calendar;
 
+import android.widget.Toast;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CalendarUtils
 {
     public static LocalDate selectedDate;
+
+    public static LocalDateTime parseDate (String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-M-d H:m:s", Locale.ENGLISH);
+        try {
+            return LocalDateTime.parse(dateString, formatter);
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static LocalDateTime parseDate (String year, String month, String day, String hour, String minute) {
+        return parseDate(getDateString(year, month, day, hour, minute));
+    }
+
+    public static String getDateString (String year, String month, String day, String hour, String minute) {
+        return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":00";
+    }
+
+    public static String toDateString (LocalDateTime date) {
+        return getDateString(Integer.toString(date.getYear()), Integer.toString(date.getMonthValue()), Integer.toString(date.getDayOfMonth()), Integer.toString(date.getHour()), Integer.toString(date.getMinute()));
+    }
 
     public static String formattedDate(LocalDate date)
     {
@@ -17,9 +43,15 @@ public class CalendarUtils
         return date.format(formatter);
     }
 
+    public static String formattedDateTime(LocalDateTime datetime)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy | HH:mm");
+        return datetime.format(formatter);
+    }
+
     public static String formattedTime(LocalTime time)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return time.format(formatter);
     }
 

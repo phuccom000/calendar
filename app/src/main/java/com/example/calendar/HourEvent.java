@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 class HourEvent
 {
-    LocalTime time;
-    ArrayList<Event> events;
+    private LocalTime time;
+    private ArrayList<Event> events;
 
-    public HourEvent(LocalTime time, ArrayList<Event> events)
+    public HourEvent(int hour, ArrayList<Event> events)
     {
-        this.time = time;
+        this.time = LocalTime.of(hour, 0);
         this.events = events;
     }
 

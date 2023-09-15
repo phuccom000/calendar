@@ -3,6 +3,7 @@ package com.example.calendar;
 import static com.example.calendar.CalendarUtils.daysInMonthArray;
 import static com.example.calendar.CalendarUtils.monthYearFromDate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -39,6 +40,8 @@ public class MonthView extends Fragment {
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+
+    private EventManager manager;
 
     public MonthView() {
         // Required empty public constructor
@@ -87,6 +90,10 @@ public class MonthView extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void restartFrag () {
+        manager = new EventManager(getActivity().getSharedPreferences("APP_INFO", Context.MODE_PRIVATE), "Events");
 
         initButtons();
         initWidgets();
@@ -121,7 +128,7 @@ public class MonthView extends Fragment {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray();
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this::onItemClick);
+        CalendarAdapter calendarAdapter = new CalendarAdapter(manager, daysInMonth, this::onItemClick);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
@@ -146,5 +153,11 @@ public class MonthView extends Fragment {
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
+    }
+
+    @Override
+    public void onStart () {
+        super.onStart();
+        restartFrag();
     }
 }

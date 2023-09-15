@@ -16,10 +16,13 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     private final ArrayList<LocalDate> days;
     private final OnItemListener onItemListener;
 
-    public CalendarAdapter(ArrayList<LocalDate> days, OnItemListener onItemListener)
+    private EventManager manager;
+
+    public CalendarAdapter(EventManager Manager, ArrayList<LocalDate> days, OnItemListener onItemListener)
     {
         this.days = days;
         this.onItemListener = onItemListener;
+        this.manager = Manager;
     }
 
     @NonNull
@@ -42,10 +45,12 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     {
         final LocalDate date = days.get(position);
 
+        if (manager.hasEventOn(date)) holder.hasEvents.setText("*");
+
         holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
 
         if(date.equals(CalendarUtils.selectedDate))
-            holder.parentView.setBackgroundColor(Color.LTGRAY);
+            holder.parentView.setBackgroundResource(R.drawable.border_selected);
 
         if(date.getMonth().equals(CalendarUtils.selectedDate.getMonth()))
             holder.dayOfMonth.setTextColor(Color.BLACK);
