@@ -33,7 +33,7 @@ public class EventAdapter extends ArrayAdapter<Event>
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
         ((TextView)convertView.findViewById(R.id.eventTimeTV)).setText(CalendarUtils.formattedDateTime(event.getDateTime()));
-        ((TextView)convertView.findViewById(R.id.eventNameTV)).setText(event.getName());
+        ((TextView)convertView.findViewById(R.id.eventNameTV)).setText(CalendarUtils.truncateEventName(event.getName(), 20));
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -130,5 +130,8 @@ public class CalendarUtils
         return null;
     }
 
-
+    public static String truncateEventName(String name, int limit) {
+        if (name.length() <= limit) return name;
+        return name.substring(0, limit - 3) + "...";
+    }
 }

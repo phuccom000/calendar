@@ -49,7 +49,7 @@ public class HourEventAdapter extends RecyclerView.Adapter<HourEventAdapter.View
             holder.eventTime.setText("-");
             return;
         }
-        holder.eventName.setText(event.getName());
+        holder.eventName.setText(CalendarUtils.truncateEventName(event.getName(), 20));
         holder.eventTime.setText(CalendarUtils.formattedTime(event.getDateTime().toLocalTime()));
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override

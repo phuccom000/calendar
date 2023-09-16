@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -94,10 +95,7 @@ public class EventEditActivity extends AppCompatActivity
         });
 
         Button delete = findViewById(R.id.deleteEventButton);
-        if (parsedID == -1) {
-            delete.setClickable(false);
-            delete.setEnabled(false);
-        }
+        if (parsedID == -1) ((ViewGroup) delete.getParent()).removeView(delete);
         else delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
