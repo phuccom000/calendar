@@ -91,7 +91,7 @@ public class WeekView extends Fragment {
     private void setWeekView()
     {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
-
+        days = daysInWeekArray(CalendarUtils.selectedDate);
         CalendarAdapter calendarAdapter = new CalendarAdapter(manager, days, this::onItemClick);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);

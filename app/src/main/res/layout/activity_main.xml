@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0sp"
+            android:layout_height="20sp"
             android:layout_weight=".05"
             android:orientation="horizontal"
             android:layout_gravity="center">
@@ -18,24 +18,27 @@
                 android:id="@+id/monthViewButton"
                 android:layout_width="0sp"
                 android:layout_weight=".3"
+                android:textSize="15sp"
                 android:layout_height="match_parent"
-                android:text="Month"
+                android:text="MONTH"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/weekViewButton"
                 android:layout_width="0sp"
                 android:layout_weight=".3"
+                android:textSize="15sp"
                 android:layout_height="match_parent"
-                android:text="Week"
+                android:text="WEEK"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/dayViewButton"
                 android:layout_width="0sp"
                 android:layout_weight=".3"
+                android:textSize="15sp"
                 android:layout_height="match_parent"
-                android:text="Day"
+                android:text="DAY"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -59,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0sp"
         android:layout_weight=".1"
+        android:layout_margin="10dp"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
         android:textStyle="bold"

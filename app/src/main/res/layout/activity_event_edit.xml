@@ -17,6 +17,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:text="Add Event"
+        android:textStyle="bold"
         android:textSize="30sp"
         android:textAlignment="center"
         android:textColor="@color/black"/>
@@ -32,18 +33,23 @@
         android:hint="Enter event name here"
         android:inputType="text"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Date and Time:"
-        android:textSize="20sp"
-        android:layout_marginLeft="10sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <TextView
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Date: "
+            android:textStyle="bold"
+            android:gravity="center|start"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="5sp"/>
         <EditText
             android:id="@+id/dayEdit"
             android:layout_width="wrap_content"
@@ -97,7 +103,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <TextView
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Time: "
+            android:textStyle="bold"
+            android:gravity="center|start"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="5sp"/>
         <EditText
             android:id="@+id/hourEdit"
             android:layout_width="wrap_content"
@@ -132,7 +149,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="50dp">
         <Button
             android:id="@+id/saveEventButton"
             android:layout_weight="0"
